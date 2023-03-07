@@ -26,7 +26,6 @@ navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
 console.log('LD END');
 
 function tick() {
-	console.log(video, code);
 	if(video.redyState === video.HAVE_ENOUGH_DATA){
 		canvasElem.height = 640;
 		canvasElem.width = 640;
@@ -39,6 +38,7 @@ function tick() {
 			isReadQR = true;
 			alert(code.data);
 		}
+		console.log(video, code);
 	}
 	requestAnimationFrame(tick);
 }
