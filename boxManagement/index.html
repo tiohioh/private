@@ -23,6 +23,7 @@ navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
 	video.play();
 	requestAnimationFrame(tick);
 });
+console.log('LD END');
 
 function tick() {
 	if(video.redyState === video.HAVE_ENOUGH_DATA){
