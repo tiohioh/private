@@ -34,11 +34,8 @@ function tick() {
 		var code = jsQR(imageData.data, imageData.width, imageData.height, {
 			inversionAttempts: 'dontInvert',
 		});
-		if(code && !isReadQR){
-			isReadQR = true;
-			alert(code.data);
-		}
-		document.getElementById('dat').value = code.data;
+		if(code)
+			document.getElementById('dat').value = code.data;
 	}
 	requestAnimationFrame(tick);
 }
