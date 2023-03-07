@@ -29,7 +29,7 @@ function tick() {
 	if(true || video.redyState === video.HAVE_ENOUGH_DATA){
 		canvasElem.height = 640;
 		canvasElem.width = 640;
-		canvas.drawImage(video, 0, 0, canvasElem.height, canvasElem.width);//, 0, 0, 640, 640);
+		canvas.drawImage(video, 0, 0, canvasElem.height, canvasElem.width, 0, 0, 640, 640);
 		var imageData = canvas.getImageData(0, 0, canvasElem.height, canvasElem.width);
 		var code = jsQR(imageData.data, imageData.width, imageData.height, {
 			inversionAttempts: 'dontInvert',
