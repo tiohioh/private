@@ -7,7 +7,7 @@
 <body>
 	<h1>段ボール管理</h1>
 	<canvas id="qrviwer"></canvas>
-	
+	<input id="dat" type="text"></input>
 </body>
 <script>
 const video = document.createElement("video");
@@ -38,7 +38,7 @@ function tick() {
 			isReadQR = true;
 			alert(code.data);
 		}
-		console.log(video, code);
+		document.getElementById('dat').value = code.data;
 	}
 	requestAnimationFrame(tick);
 }
