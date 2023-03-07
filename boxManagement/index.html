@@ -1,0 +1,42 @@
+<!--引っ越し用段ボール管理アプリ-->
+<head>
+	<meta charset="utf-8"/>
+	<title>段ボール管理用</title>
+	<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+</head>
+<body>
+	<h1>段ボール管理</h1>
+	<canvas id="qrviwer"></canvas>
+	
+</body>
+<script>
+const video = document.createElement("video");
+const canvasElem = document.getElementById("qrviwer");
+const canvas = canvasElem.getContext("2d");
+
+let isReadQR = false;
+
+navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
+.then(stream => {
+	video.srcObject = stream;
+	video.setAttribute('playsinline', true);
+	video.play();
+	requestAnimationFrame(tick);
+});
+
+function tick() {
+	if(video.redyState === video.HAVE_ENOUGH_DATA){
+		canvasElem.height = 640;
+		canvasElem.width = 640;
+		canvas.drawImage(video, 0, 0, canvasElem.height, canvasElem.width, 0, 0, 640, 640);
+		let imageData = canvas.getImageData(0, 0, canvasElem.height, canvasElem.width);
+		let code = jsQR(imageData.data, imageData.width, imageData.height, {
+			inversionAttempts: 'dontInvert'
+		});
+		if(code && !isReadQR){
+			isReadQR = true;
+			alert(code.data);
+		}
+	}
+}
+</script>
