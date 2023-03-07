@@ -26,7 +26,7 @@ navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
 console.log('LD END');
 
 function tick() {
-	if(video.redyState === video.HAVE_ENOUGH_DATA){
+	if(true || video.redyState === video.HAVE_ENOUGH_DATA){
 		canvasElem.height = 640;
 		canvasElem.width = 640;
 		canvas.drawImage(video, 0, 0, canvasElem.height, canvasElem.width);//, 0, 0, 640, 640);
