@@ -30,9 +30,9 @@ function tick() {
 		canvasElem.height = 640;
 		canvasElem.width = 640;
 		canvas.drawImage(video, 0, 0, canvasElem.height, canvasElem.width);//, 0, 0, 640, 640);
-		let imageData = canvas.getImageData(0, 0, canvasElem.height, canvasElem.width);
-		let code = jsQR(imageData.data, imageData.width, imageData.height, {
-			inversionAttempts: 'dontInvert'
+		var imageData = canvas.getImageData(0, 0, canvasElem.height, canvasElem.width);
+		var code = jsQR(imageData.data, imageData.width, imageData.height, {
+			inversionAttempts: 'dontInvert',
 		});
 		if(code && !isReadQR){
 			isReadQR = true;
