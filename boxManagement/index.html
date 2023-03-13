@@ -51,8 +51,10 @@ const form = document.getElementById('form');
 form.code.onclick = () => form.code.readOnly = false;
 
 function getInfo() {
-	xhr();
-	//情報更新, リードオンリー外す
+	//xhr();
+	//情報更新
+	for(i of document.getElementsByClassName('defread'))
+		i.readOnly = false;
 }
 
 function tick() {
