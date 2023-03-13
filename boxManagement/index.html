@@ -7,7 +7,29 @@
 <body>
 	<h1>段ボール管理</h1>
 	<canvas id="qrviwer"></canvas>
-	<input id="dat" type="text"></input>
+	<div id="notice-area"></div>
+	<form id="form">
+		<div>管理コード</div>
+		<div>
+			<input type="text" name="code"></input>
+		</div>
+		<div><button onclick="getInfo()">情報読み取り</button></div>
+		<div>物品内容</div>
+		<div>
+			<input class="defread" type="text" name="detail" readOnly></input>
+		</div>
+		<div>保管場所</div>
+		<div>
+			<input class="defread" type="text" name="place" readOnly></input>
+		</div>
+		<div>ステータス</div>
+		<div>
+			<input class="defread" type="text" name="status" readOnly></input>
+		</div>
+		<div>
+			<button type="submit">更新</input>
+		</div>
+	</form>
 </body>
 <script>
 const video = document.createElement("video");
@@ -25,6 +47,14 @@ navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
 });
 console.log('LD END');
 
+const form = document.getElementById('form');
+form.code.onclick = () => form.code.readOnly = false;
+
+function getInfo() {
+	xhr();
+	//情報更新, リードオンリー外す
+}
+
 function tick() {
 	if(true || video.redyState === video.HAVE_ENOUGH_DATA){
 		canvasElem.height = 640;
@@ -34,9 +64,13 @@ function tick() {
 		var code = jsQR(imageData.data, imageData.width, imageData.height, {
 			inversionAttempts: 'dontInvert',
 		});
-		if(code)
-			document.getElementById('dat').value = code.data;
+		if(code && !form.code.readOnly){
+			form.code.value = code.data;
+			form.code.readOnly = true;
+			getInfo();
+		}
 	}
 	requestAnimationFrame(tick);
 }
 </script>
+
